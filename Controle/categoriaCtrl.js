@@ -3,6 +3,7 @@ import Categoria from "../Modelo/categoria.js";
 
 export default class CategoriaCtrl {
 
+
     gravar(requisicao, resposta) {
         resposta.type('application/json');
         if (requisicao.method === 'POST' && requisicao.is('application/json')) {
@@ -113,7 +114,6 @@ export default class CategoriaCtrl {
         }
     }
 
-
     consultar(requisicao, resposta) {
         resposta.type('application/json');
         //express, por meio do controle de rotas, será
@@ -122,19 +122,21 @@ export default class CategoriaCtrl {
         if (!termo){
             termo = "";
         }
+
         if (requisicao.method === "GET"){
             const categoria = new Categoria();
-            categoria.consultar(termo).then((listaCategorias)=>{
+
+            categoria.consultar(termo).then((listaCategorias) => {
                 resposta.json(
                     {
                         status:true,
-                        listaCategorias
+                        listaCategorias,
                     });
             })
-            .catch((erro)=>{
+            .catch((erro) => {
                 resposta.json(
                     {
-                        status:false,
+                        status: false,
                         mensagem:"Não foi possível obter as categorias: " + erro.message
                     }
                 );

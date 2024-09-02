@@ -17,4 +17,5 @@ CREATE TABLE produto(
     prod_qtdEstoque DECIMAL(10,2) NOT NULL DEFAULT 0,
     cat_codigo INT NOT NULL,
     CONSTRAINT pk_produto PRIMARY KEY(prod_codigo),
+    CONSTRAINT fk_categoria FOREIGN KEY(cat_codigo) REFERENCES categoria(cat_codigo),
 );

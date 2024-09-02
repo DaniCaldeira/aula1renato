@@ -39,7 +39,7 @@ export default class ProdutoCtrl {
             } else {
                 resposta.status(400).json({
                     "status": false,
-                    "mensagem": "Por favor, informe todos os dados do produto corretamente!" + anoPublicacao
+                    "mensagem": "Por favor, informe todos os dados do produto corretamente!"
                 });
             }
         } else {

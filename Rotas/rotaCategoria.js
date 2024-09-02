@@ -5,7 +5,10 @@ import CategoriaCtrl from "../Controle/categoriaCtrl.js";
 //endpoint da aplicação
 
 const catCtrl = new CategoriaCtrl();
+
 const rotaCategoria = new Router();
+
+
 
 rotaCategoria
 .get('/',catCtrl.consultar)

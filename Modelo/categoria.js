@@ -5,7 +5,7 @@ export default class Categoria {
     //definição dos atributos privados
     #codigo;
     #descricao;
-
+    
     constructor(codigo=0, descricao=''){
         this.#codigo=codigo;
         this.#descricao=descricao;
