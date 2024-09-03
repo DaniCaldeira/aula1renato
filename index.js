@@ -4,17 +4,19 @@ import rotaCategoria from './Rotas/rotaCategoria.js';
 import rotaProduto from './Rotas/rotaProduto.js';
 import rotaLivro from './Rotas/rotaLivro.js';
 import rotaAutor from './Rotas/rotaAutor.js';
+import rotaGenero from './Rotas/rotaGenero.js'; // Importa a rota de gênero
 import session from 'express-session';
 import dotenv from 'dotenv';
 import rotaAutenticacao from './Rotas/rotaAutenticacao.js';
+import { verificarAutenticacao } from './Segurança/autenticar.js';
 
 dotenv.config();
 
 console.log("CHAVE_SECRETA:", process.env.CHAVE_SECRETA);
 
-if (!process.env.CHAVE_SECRETA) {
+/*if (!process.env.CHAVE_SECRETA) {
     throw new Error('CHAVE_SECRETA não definida. Verifique o arquivo .env.');
-}
+}*/
 
 const host='0.0.0.0';
 const porta=3000;
@@ -32,10 +34,11 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use('/categoria',rotaCategoria);
-app.use('/produto',rotaProduto);
-app.use('/livro', rotaLivro);
-app.use('/autor', rotaAutor);
+app.use('/categoria', /*verificarAutenticacao*/ rotaCategoria);
+app.use('/produto', /*verificarAutenticacao*/ rotaProduto);
+app.use('/livro', /*verificarAutenticacao*/ rotaLivro);
+app.use('/autor', /*verificarAutenticacao*/ rotaAutor);
+app.use('/genero', /*verificarAutenticacao*/ rotaGenero); // Adiciona a rota de gênero
 app.use('/autenticacao', rotaAutenticacao);
 
 app.listen(porta, host, ()=>{
