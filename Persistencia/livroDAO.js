@@ -42,17 +42,34 @@ export default class LivroDAO {
             const conexao = await conectar();
             const retorno = await conexao.execute(sql, parametros);
             livro.codigo = retorno[0].insertId;
+            //ATUALIZAR GENERO-------------------------------------------------------------------
+            const sql1 = `INSERT INTO livro_genero(livro_codigo, genero_codigo)
+                VALUES(?,?)`;
+            const parametros1 = [livro.codigo, livro.codigo_genero]; // Incluindo aut_codigo
+            const retorno1 = await conexao.execute(sql1, parametros1);
+            const conexao1 = await conectar();
+            await conexao1.release();
             await conexao.release();
         }
     }
+
+   
 
     async atualizar(livro) {
         if (livro instanceof Livro) {
             const sql = `UPDATE livro SET livro_titulo = ?, livro_editora = ?, livro_ano_publicacao = ?, livro_preco_custo = ?, livro_preco_venda = ?, livro_quantidade_estoque = ?, aut_codigo = ? WHERE livro_codigo = ?`;
             const parametros = [livro.titulo, livro.editora, livro.anoPublicacao, livro.precoCusto, livro.precoVenda, livro.quantidadeEstoque, livro.autor, livro.codigo]; // Incluindo aut_codigo
-
+            const sql1 = `UPDATE livro_genero
+                          SET genero_codigo = ?
+                          where livro_codigo = ? and id = ? `;
+            const parametros1 = [livro.codigo_genero,livro.codigo, livro.Id]; // Incluindo aut_codigo
+            console.log("PARAMETROS 1 ",parametros1);
+            console.log("PARAMETROS ",parametros);
             const conexao = await conectar();
+            const conexao1 = await conectar();
             await conexao.execute(sql, parametros);
+            await conexao1.execute(sql1, parametros1);
+            await conexao1.release();
             await conexao.release();
         }
     }

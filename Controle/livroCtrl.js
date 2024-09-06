@@ -15,6 +15,8 @@ export default class LivroCtrl {
             const precoVenda = dados.preco_venda;
             const quantidadeEstoque = dados.quantidade_estoque;
             const autor = dados.autor; // Adiciona a extração do autor
+            const genero_codigo = dados.genero_codigo;
+            
 
             // Validando os dados recebidos
             if (!titulo || !editora || !anoPublicacao || !precoCusto || !precoVenda || !quantidadeEstoque || !autor) {
@@ -31,10 +33,11 @@ export default class LivroCtrl {
                 });
             }
 
-            const livro = new Livro(0, titulo, autor, editora, anoPublicacao, precoCusto, precoVenda, quantidadeEstoque);
+            const livro = new Livro(0, titulo, autor, editora, anoPublicacao, precoCusto, precoVenda, quantidadeEstoque,genero_codigo);
             
             try {
                 await livro.gravar();
+
                 resposta.status(200).json({
                     "status": true,
                     "codigoGerado": livro.codigo,
@@ -68,6 +71,8 @@ export default class LivroCtrl {
             const precoVenda = dados.preco_venda;
             const quantidadeEstoque = dados.quantidade_estoque;
             const autor = dados.autor; // Adiciona a extração do autor
+            const genero_codigo = dados.genero_codigo;
+            const Id = dados.Id
 
             // Validando os dados recebidos
             if (!codigo || !titulo || !editora || !anoPublicacao || !precoCusto || !precoVenda || !quantidadeEstoque || !autor) {
@@ -84,7 +89,7 @@ export default class LivroCtrl {
                 });
             }
 
-            const livro = new Livro(codigo, titulo, autor, editora, anoPublicacao, precoCusto, precoVenda, quantidadeEstoque);
+            const livro = new Livro(codigo, titulo, autor, editora, anoPublicacao, precoCusto, precoVenda, quantidadeEstoque,genero_codigo,Id);
             
             try {
                 await livro.atualizar();

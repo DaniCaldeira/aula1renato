@@ -2,6 +2,7 @@ import LivroDAO from "../Persistencia/livroDAO.js";
 import Autor from "./autor.js";
 
 export default class Livro {
+    #Id
     #codigo;
     #titulo;
     #autor; // Adicione a propriedade para o autor
@@ -10,8 +11,11 @@ export default class Livro {
     #precoCusto;
     #precoVenda;
     #quantidadeEstoque;
+   
+    #codigo_genero
 
-    constructor(codigo = 0, titulo = "", autor = null, editora = "", anoPublicacao = 0, precoCusto = 0, precoVenda = 0, quantidadeEstoque = 0) {
+    constructor(codigo = 0, titulo = "", autor = null, editora = "", anoPublicacao = 0, precoCusto = 0, precoVenda = 0, quantidadeEstoque = 0, codigo_genero=0,Id = 0) {
+       
         this.#codigo = codigo;
         this.#titulo = titulo;
         this.#autor = autor; // Inicialize a propriedade autor
@@ -20,8 +24,24 @@ export default class Livro {
         this.#precoCusto = precoCusto;
         this.#precoVenda = precoVenda;
         this.#quantidadeEstoque = quantidadeEstoque;
+        this.#codigo_genero = codigo_genero;
+        this.#Id = Id;
+    }
+    get Id(){
+        return this.#Id;
+    }
+    set Id(novoId){
+        this.#Id = novoId;
+
     }
 
+    get codigo_genero(){
+        return this.#codigo_genero;
+    }
+    set codigo_genero(novoCodigoGenero){
+        this.#codigo_genero = novoCodigoGenero;
+
+    }
     get codigo() {
         return this.#codigo;
     }
@@ -88,6 +108,8 @@ export default class Livro {
             precoCusto: this.#precoCusto,
             precoVenda: this.#precoVenda,
             quantidadeEstoque: this.#quantidadeEstoque,
+            codigo_genero : this.#codigo_genero,
+            id_livro_genero : this.#Id
         };
     }
 

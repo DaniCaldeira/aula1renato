@@ -10,12 +10,19 @@ export default class GeneroDAO {
     async init() {
         try {
             const conexao = await conectar();
-            const sql = `
+    
+            // Criação da tabela genero
+            let sql = `
             CREATE TABLE IF NOT EXISTS genero (
                 genero_codigo INT NOT NULL AUTO_INCREMENT,
                 genero_nome VARCHAR(255) NOT NULL,
                 CONSTRAINT pk_genero PRIMARY KEY (genero_codigo)
             );
+            `;
+            await conexao.execute(sql);
+    
+            // Criação da tabela livro_genero
+            sql = `
             CREATE TABLE IF NOT EXISTS livro_genero (
                 livro_codigo INT NOT NULL,
                 genero_codigo INT NOT NULL,
@@ -25,11 +32,13 @@ export default class GeneroDAO {
             );
             `;
             await conexao.execute(sql);
+    
             await conexao.release();
         } catch (e) {
             console.log("Não foi possível iniciar o banco de dados: " + e.message);
         }
     }
+    
 
     async gravar(genero) {
         if (genero instanceof Genero) {

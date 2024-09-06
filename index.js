@@ -34,11 +34,11 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use('/categoria', /*verificarAutenticacao*/ rotaCategoria);
-app.use('/produto', /*verificarAutenticacao*/ rotaProduto);
-app.use('/livro', /*verificarAutenticacao*/ rotaLivro);
-app.use('/autor', /*verificarAutenticacao*/ rotaAutor);
-app.use('/genero', /*verificarAutenticacao*/ rotaGenero); // Adiciona a rota de gênero
+app.use('/categoria', verificarAutenticacao, rotaCategoria);
+app.use('/produto', verificarAutenticacao, rotaProduto);
+app.use('/livro', verificarAutenticacao, rotaLivro);
+app.use('/autor', verificarAutenticacao, rotaAutor);
+app.use('/genero', verificarAutenticacao, rotaGenero); // Adiciona a rota de gênero
 app.use('/autenticacao', rotaAutenticacao);
 
 app.listen(porta, host, ()=>{
