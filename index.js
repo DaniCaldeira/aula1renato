@@ -19,7 +19,7 @@ console.log("CHAVE_SECRETA:", process.env.CHAVE_SECRETA);
 }*/
 
 const host='0.0.0.0';
-const porta=3000;
+const porta=4000;
 
 const app = express();
 
@@ -30,7 +30,10 @@ app.use(session({
     cookie: { maxAge: 1000 * 60 * 15 }
 }))
 
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:3000', // Adicione a URL do seu frontend
+    credentials: true // Permite o envio de cookies entre domínios
+}));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 

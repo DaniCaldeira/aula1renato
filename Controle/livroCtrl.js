@@ -10,12 +10,12 @@ export default class LivroCtrl {
             // Extraindo os dados do livro
             const titulo = dados.titulo;
             const editora = dados.editora;
-            const anoPublicacao = dados.ano_publicacao;
-            const precoCusto = dados.preco_custo;
-            const precoVenda = dados.preco_venda;
-            const quantidadeEstoque = dados.quantidade_estoque;
+            const anoPublicacao = dados.anoPublicacao;
+            const precoCusto = dados.precoCusto;
+            const precoVenda = dados.precoVenda;
+            const quantidadeEstoque = dados.quantidadeEstoque;
             const autor = dados.autor; // Adiciona a extração do autor
-            const genero_codigo = dados.genero_codigo;
+            const generoCodigo = dados.generoCodigo;
             
 
             // Validando os dados recebidos
@@ -33,7 +33,7 @@ export default class LivroCtrl {
                 });
             }
 
-            const livro = new Livro(0, titulo, autor, editora, anoPublicacao, precoCusto, precoVenda, quantidadeEstoque,genero_codigo);
+            const livro = new Livro(0, titulo, autor, editora, anoPublicacao, precoCusto, precoVenda, quantidadeEstoque,generoCodigo);
             
             try {
                 await livro.gravar();
@@ -66,12 +66,12 @@ export default class LivroCtrl {
             const codigo = dados.codigo;
             const titulo = dados.titulo;
             const editora = dados.editora;
-            const anoPublicacao = dados.ano_publicacao;
-            const precoCusto = dados.preco_custo;
-            const precoVenda = dados.preco_venda;
-            const quantidadeEstoque = dados.quantidade_estoque;
+            const anoPublicacao = dados.anoPublicacao;
+            const precoCusto = dados.precoCusto;
+            const precoVenda = dados.precoVenda;
+            const quantidadeEstoque = dados.quantidadeEstoque;
             const autor = dados.autor; // Adiciona a extração do autor
-            const genero_codigo = dados.genero_codigo;
+            const generoCodigo = dados.generoCodigo;
             const Id = dados.Id
 
             // Validando os dados recebidos
@@ -89,7 +89,7 @@ export default class LivroCtrl {
                 });
             }
 
-            const livro = new Livro(codigo, titulo, autor, editora, anoPublicacao, precoCusto, precoVenda, quantidadeEstoque,genero_codigo,Id);
+            const livro = new Livro(codigo, titulo, autor, editora, anoPublicacao, precoCusto, precoVenda, quantidadeEstoque,generoCodigo,Id);
             
             try {
                 await livro.atualizar();
